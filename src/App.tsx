@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+interface SearchProps{
+  value: string;
+  onChange: (value:string) => void
+}
+
+interface User{
+  id:  number;
+  name: string;
+}
+
+const getUser = () => Promise.resolve({id: 1, name: 'User'});
+
+export function Search({value, onChange}:SearchProps) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+		<div>
+			<label htmlFor="search">Search : </label>
+			<input id="search" type="text" value={value} onChange={(e) => onChange(e.target.value)} />
+		</div>
+	);
+}
+
+
+function App() {
+  const [user, setUser] = useState<User>(); 
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const userData = await getUser();
+      setUser(userData);
+    };
+    loadUser();
+  }, []);
+  return (
+		<div className="App">
+			<header className="App-header">
+				{user && <h1 data-testid="search">{user.name}</h1>}
+				<Search value={search} onChange={setSearch} />
+			</header>
+		</div>
+	);
 }
 
 export default App;
