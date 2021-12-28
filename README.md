@@ -52,5 +52,13 @@ also I can use method **getByText** from **render** method
     screen.debug();
 ```
 
-
+## Assertive Functions
 ![image](https://user-images.githubusercontent.com/4374389/147608510-5864bfb3-a223-4542-b7c7-5ed061933d85.png)
+
+## Imitate user actions by fireEvent
+```js
+const searchEl = screen.getByTestId('search')
+fireEvent.change(searchEl, {
+  target: {value: 'Hello'}
+});
+```

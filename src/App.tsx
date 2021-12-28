@@ -18,7 +18,7 @@ export function Search({value, onChange}:SearchProps) {
   return (
 		<div>
 			<label htmlFor="search">Search : </label>
-			<input id="search" type="text" value={value} onChange={(e) => onChange(e.target.value)} />
+			<input data-testid="search" id="search" type="text" value={value} onChange={(e) => onChange(e.target.value)} />
 		</div>
 	);
 }
@@ -38,7 +38,12 @@ function App() {
   return (
 		<div className="App">
 			<header className="App-header">
-				{user && <h1 data-testid="search">{user.name}</h1>}
+				{user && (
+					<h1>
+						{search}
+						{user.name}
+					</h1>
+				)}
 				<Search value={search} onChange={setSearch} />
 			</header>
 		</div>
