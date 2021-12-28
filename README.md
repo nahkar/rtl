@@ -62,3 +62,5 @@ fireEvent.change(searchEl, {
   target: {value: 'Hello'}
 });
 ```
+
+## User Events
