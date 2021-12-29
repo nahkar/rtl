@@ -75,8 +75,8 @@ describe('Select', () => {
 		);
     const select = getByTestId('select');
     userEvent.selectOptions(select,"1");
-    const options = getAllByTestId('select-option');
-    expect((options[0] as HTMLOptionElement).selected).toBeTruthy();
-    expect((options[1] as HTMLOptionElement).selected).toBeFalsy();
+    const options = getAllByTestId('select-option') as HTMLOptionElement[];
+    expect(options[0].selected).toBeTruthy();
+    expect(options[1].selected).toBeFalsy();
   })
 })
