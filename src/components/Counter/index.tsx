@@ -6,9 +6,9 @@ export default function Counter() {
   return (
 		<div>
 			<h1 data-testid="header">Value: {counter}</h1>
-			<button data-testid="decrease-btn">Decrease</button>
-			<input data-testid="input" type="number" value={inputValue} />
-			<button data-testid="increase-btn">Increase</button>
+			<button data-testid="decrease-btn" onClick={() => setCounter(counter - inputValue)}>Decrease</button>
+			<input data-testid="input" type="number" value={inputValue} onChange={e => setInputValue(parseInt(e.target.value))}/>
+			<button data-testid="increase-btn" onClick={() => setCounter(counter + inputValue)}>Increase</button>
 		</div>
 	);
 }
