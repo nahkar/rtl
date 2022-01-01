@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Counter from './components/Counter';
 
 interface SearchProps{
   value: string;
@@ -37,6 +38,8 @@ function App() {
   }, []);
   return (
 		<div className="App">
+			<Counter />
+
 			<header className="App-header">
 				{user && (
 					<h1>
