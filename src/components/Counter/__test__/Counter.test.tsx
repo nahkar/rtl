@@ -68,7 +68,7 @@ describe('Counter tests', () => {
 		userEvent.click(increaseBtnEl);
 		userEvent.click(increaseBtnEl);
 		userEvent.click(increaseBtnEl);
-		
+
 		expect(headerEl.textContent).toBe('Value: 86');
 	});
 
@@ -90,5 +90,24 @@ describe('Counter tests', () => {
 		userEvent.click(decreaseBtnEl);
 
 		expect(headerEl.textContent).toBe('Value: -40');
+	});
+
+	it('Increase and Decrease classes', () => {
+		const { getByTestId } = render(<Counter />);
+		const inputEl = getByTestId('input') as HTMLInputElement;
+		const increaseBtnEl = getByTestId('increase-btn') as HTMLButtonElement;
+		const decreaseBtnEl = getByTestId('decrease-btn') as HTMLButtonElement;
+		const headerEl = getByTestId('header');
+		expect(headerEl.classList.value).toBe('');
+		userEvent.type(inputEl, '101');
+		userEvent.click(increaseBtnEl);
+
+		expect(headerEl.classList.value).toBe('green');
+	
+		userEvent.click(decreaseBtnEl);
+		userEvent.click(decreaseBtnEl);
+		userEvent.click(decreaseBtnEl);
+		
+		expect(headerEl.classList.value).toBe('red');
 	});
 });
